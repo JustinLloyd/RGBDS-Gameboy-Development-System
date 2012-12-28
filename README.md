@@ -1,4 +1,4 @@
-rgbds-gameboy-development-system
+RGBDS Gameboy Development System
 ================================
 
 Thanks for your interest in RGBDS Gameboy Development System. This project is now hosted at
