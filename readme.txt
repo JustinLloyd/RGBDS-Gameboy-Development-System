@@ -1,12 +1,11 @@
-RGBDS Gameboy Development System
-================================
+* Welcome
+Thanks for downloading RGBDS Gameboy Development System
 
-Thanks for your interest in RGBDS Gameboy Development System. This project is now hosted at
-https://bitbucket.org/JustinLloyd/rgbds-gameboy-development-system
+Visit https://bitbucket.org/JustinLloyd/rgbds-gameboy-development-system/overview for 
+more information and to download the latest version.
 
 
-License
-====================
+* License
                       DO WHATEVER PUBLIC LICENSE*
    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
@@ -21,8 +20,7 @@ License
  Software originally created by Justin Lloyd @ http://otakunozoku.com/
 
 
-About
-====================
+* About
 An assembler, linker and ROM fixer to be used for Nintendo Gameboy and Sega 
 Gamegear game development. The files are in C for DOS and Windows and were 
 written around the mid-1990's.
@@ -32,17 +30,14 @@ the time of their creation, being used worldwide to create hundreds upon
 hundreds of professional video games for the Nintendo and Sega platforms.
 
     
-Pre-requisites
-====================
+* Pre-requisites
 1. C compiler (GNU or MSVC should work)
 
-Using RGBDS
-====================
+* Using RGBDS
 1. You're on your own though some information can be found at
    http://otakunozoku.com/RGBDSdocs/index.htm
 
-Support
-====================
+* Support
 Absolutely none provided.
 
 

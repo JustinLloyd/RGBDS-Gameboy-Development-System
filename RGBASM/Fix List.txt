@@ -1,0 +1,87 @@
+Fix List (things to do)
+========================
+
+BUG[BURT]: Fix the LDI instruction so that it handles the brackets around HL
+BUG[BURT]: Fix the Linker
+	GLOBAL sym
+	DW	sym
+
+	will crash the linker because "sym" was declared global and referenced but never actually defined. Probably a memory reference
+	error (refers to memory 0xFFFFFFFF).
+BUG[YARIN]: _NARG works on pass 1, but on pass 2 I get error?! (symbol doesn't exist)
+BUG[YARIN]: commenting lines with *** doesn't seem to work?!
+BUG[YARIN]: you have to type jp @-1 to jump to the same address, but jr @ is fine... seems @ works a bit weird
+
+SUGGESTION: "parse error on line xx" doesn't tell much
+
+SUGGESTION: it looks nicer typing "MACRO macroname" instead of "macroname: MACRO" (invalid suggestion, reason, will break too
+much code and does not follow "de facto standard" ways of declaring macros in other assemblers, e.g. DevPac)
+
+SUGGESTION: instead of adding \@ at the end of labels in macro, I suggest something like a ".." prefix (invalid suggestion, reason:
+will break too much code and does not follow "de facto standard" ways of declaring unique macro labels in other assemblers (verify this))
+
+FEATURE: Fix the assembler so that it handles regular brackets in Z80 instructions, as well as square brackets.
+FEATURE: adding possibility to specify which RAM bank a BSS variable should be in (a must)
+FEATURE: more control where sections should be. starting sections at a masked address (ALIGN)
+FEATURE: add BANK[Bank(label_name)] directive
+
+BUG[YARIN]: The following code breaks:
+		DUMMY  EQUS "[$C000]"
+		ld a,DUMMY
+but the following code works:
+		YUMMY  EQUS "[$C000]"
+		ld a,YUMMY
+probably due to the fact that DUMMY starts with the first letter of a register name. Using the EQU directive appears to work.
+
+FEATURE: Local symbol output for all symbols
+FEATURE: BSS banking (for multiple RAM banks on CGB)
+FEATURE: Add option to use Intel/Zilog format binary & hex numbers (1234h instead of $1234 and 10101010b instead of %10101010)
+FEATURE: Add -q (quiet) option to all tools, only report errors
+FEATURE: Output section names in .MAP file
+FEATURE: List of unreferenced symbols
+FEATURE: Sort sections so that they are in address then symbol order
+FEATURE: Output total slack statistics at end of .MAP file
+FEATURE: Optional warning on use of JP when JR would have sufficed.
+
+BUG:
+The following don't produce compile time errors.
+
+DB
+DW
+DB 1,
+DW 1,
+
+The first two lines should produce an error unless
+they are in a BSS or HRAM section. The second two
+lines should always produce an error.
+
+BUG:
+Following works:
+RETP 5
+FRAME SET FRAME + 1
+DB FRAME
+ENDR
+
+BUT this does not work:
+RETP 5
+FRAME SET FRAME - 1
+DB FRAME
+ENDR
+
+I have to do following:
+RETP 5
+FRAME SET FRAME + -1
+DB FRAME
+ENDR
+
+BUG:
+Bug in XLink:
+Lines in the link file starting with # should be ignored, but if the line 
+is inside a section such as [objects], then it is only the first word that 
+is ignored, not the whole line, so
+#Hi Otaku
+Would give an error, while:
+#Hi_Otaku
+is okay...
+
+
